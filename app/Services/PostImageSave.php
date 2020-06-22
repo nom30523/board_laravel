@@ -12,7 +12,7 @@ class PostImageSave
     $requestFile = $request->file('img_file')->getClientOriginalName();
     $fileName = date('YmdHis') . Auth::id() . substr($requestFile, strpos($requestFile, '.'));
     $request->img_file->storeAs('public/images', $fileName);
-    $img_path  = 'public/images/' . $fileName;
+    $img_path  = '/storage/images/' . $fileName;
 
     return $img_path;
   }
