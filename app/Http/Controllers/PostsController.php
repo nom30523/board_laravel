@@ -10,6 +10,11 @@ use App\Http\Requests\StorePost;
 
 class PostsController extends Controller
 {
+    public function index()
+    {
+        return view('post.index');
+    }
+
     public function create()
     {
         return view('post.create');
