@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Post;
 use App\Http\Requests\StorePost;
+use App\Services\PostImageSave;
 
 class PostsController extends Controller
 {
@@ -28,10 +29,7 @@ class PostsController extends Controller
         $post->text = $request->input('text');
         $post->user_id = Auth::id();
         if (!empty($request->img_file)) {
-            $requestFile = $request->file('img_file')->getClientOriginalName();
-            $fileName = date('YmdHis') . Auth::id() . substr($requestFile, strpos($requestFile, '.'));
-            $request->img_file->storeAs('public/images', $fileName);
-            $post->img_path  = 'public/images/' . $fileName;
+            $post->img_path  = PostImageSave::fileSave($request);
         }
         $post->save();
 
