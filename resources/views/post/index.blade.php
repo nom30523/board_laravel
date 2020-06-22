@@ -16,7 +16,7 @@
         <tr>
           <th scope="row">{{ $post->id }}</th>
           <td>{{ $post->user->name }}</td>
-          <td><a href="#">{{ $post->title }}</a></td>
+          <td><a href="{{ route('post.show', ['id' => $post->id]) }}">{{ $post->title }}</a></td>
           <td>{{ $post->created_at }}</td>
         </tr>
       @endforeach
