@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="card-body">
-      <p class="card-text">{{ $post->text }}</p>
+      <p class="card-text">{!! nl2br(e($post->text)) !!}</p>
       @if ($post->img_path)
         <img src="{{ $post->img_path }}" alt="投稿画像" class="img-fluid img-thumbnail">
       @endif
