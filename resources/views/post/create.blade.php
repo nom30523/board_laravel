@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
           <div class="custom-file">
-            <input type="file" name="img_path" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+            <input type="file" name="img_file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
             <label class="custom-file-label" for="inputGroupFile04">画像を選択</label>
           </div>
         </div>
