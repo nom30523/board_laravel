@@ -11,11 +11,22 @@
         @csrf
         <div class="form-group">
           <label for="titleform">タイトル</label>
-          <input type="text" name="title" class="form-control" id="titleform">
+          <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="titleform" value="{{ old('title') }}">
+          @error('title')
+            <span class="invalid-feedback">
+              <strong>{{ $message }}</strong>
+            </span>
+          @enderror
         </div>
         <div class="form-group">
           <label for="textform">本文</label>
-          <textarea name="text" class="form-control" id="textform" cols="30" rows="10"></textarea>
+          <textarea name="text" class="form-control @error('title') is-invalid @enderror" id="textform" cols="30" rows="10">{{ old('text') }}</textarea>
+          @error('text')
+            <span class="invalid-feedback">
+              <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+
         </div>
         <div class="form-group">
           <div class="custom-file">
