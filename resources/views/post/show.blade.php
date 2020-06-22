@@ -13,7 +13,7 @@
     <div class="card-body">
       <p class="card-text">{{ $post->text }}</p>
       @if ($post->img_path)
-        <img src="{{ $post->img_path }}" alt="投稿画像">
+        <img src="{{ $post->img_path }}" alt="投稿画像" class="img-fluid img-thumbnail">
       @endif
       <div style="text-align: right;">
         <span>{{ $post->user->name }}</span>
