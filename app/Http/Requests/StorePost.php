@@ -26,7 +26,7 @@ class StorePost extends FormRequest
         return [
             'title' => 'required|string|max:50',
             'text' => 'required|string|max:1000',
-            'img_file' => 'file|image|mimes:ipeg,png,jpg|max:2048|nullable'
+            'img_file' => 'file|image|mimes:jpeg,png,jpg|max:2048|nullable'
         ];
     }
 }
