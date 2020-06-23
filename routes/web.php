@@ -30,4 +30,5 @@ Route::group(['prefix' => 'post', 'middleware' => 'auth'], function() {
 
 Route::group(['prefix' => 'comment', 'middleware' => 'auth'], function() {
     Route::post('store/{post}', 'CommentsController@store')->name('comment.store');
+    Route::post('destroy/{comment}', 'CommentsController@destroy')->name('comment.destroy');
 });
