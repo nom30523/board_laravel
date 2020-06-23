@@ -8,7 +8,10 @@
       @if (Auth::check() && Auth::id() === $post->user_id)
         <div>
           <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="badge badge-primary" style="font-size: 16px;">編集</a>
-          <a href="#" data-id="{{ $post->id }}" class="badge badge-danger" style="font-size: 16px;">削除</a>
+          <a href="#" class="badge badge-danger" id="del" data-id="{{ $post->id }}" style="font-size: 16px;">削除</a>
+          <form action="{{ route('post.destroy', ['id' => $post->id]) }}" method="post" id="del_{{ $post->id }}">
+            @csrf
+          </form>
         </div>
       @endif
     </div>
@@ -24,4 +27,7 @@
     </div>
   </div>
 </div>
+@if (Auth::check() && Auth::id() === $post->user_id)
+  <script src="/js/delPost.js"></script>
+@endif
 @endsection
