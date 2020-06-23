@@ -23,4 +23,6 @@ Route::group(['prefix' => 'post'], function() {
 Route::group(['prefix' => 'post', 'middleware' => 'auth'], function() {
     Route::get('create', 'PostsController@create')->name('post.create');
     Route::post('store', 'PostsController@store')->name('post.store');
+    Route::get('edit/{id}', 'PostsController@edit')->name('post.edit');
+    Route::post('update/{id}', 'PostsController@update')->name('post.update');
 });
