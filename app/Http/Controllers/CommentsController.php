@@ -20,4 +20,13 @@ class CommentsController extends Controller
 
         return redirect(route('post.show', ['id' => $post->id]));
     }
+
+    public function destroy(Comment $comment)
+    {
+        $this->authorize('delete', $comment);
+
+        $comment->delete();
+
+        return redirect(route('post.show', ['id' => $comment->post_id]));
+    }
 }
