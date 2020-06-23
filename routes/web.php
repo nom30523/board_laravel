@@ -27,3 +27,8 @@ Route::group(['prefix' => 'post', 'middleware' => 'auth'], function() {
     Route::post('update/{id}', 'PostsController@update')->name('post.update');
     Route::post('destroy/{id}', 'PostsController@destroy')->name('post.destroy');
 });
+
+Route::group(['prefix' => 'comment', 'middleware' => 'auth'], function() {
+    Route::post('store/{post}', 'CommentsController@store')->name('comment.store');
+    Route::post('destroy/{comment}', 'CommentsController@destroy')->name('comment.destroy');
+});

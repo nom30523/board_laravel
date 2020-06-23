@@ -40,8 +40,9 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        $comments = $post->comments;
 
-        return view('post.show', ['post' => $post]);
+        return view('post.show', ['post' => $post, 'comments' => $comments]);
     }
 
     public function edit($id)
