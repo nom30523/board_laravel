@@ -43,4 +43,30 @@ class PostsController extends Controller
 
         return view('post.show', ['post' => $post]);
     }
+
+    public function edit($id)
+    {
+        $post = Post::find($id);
+        $this->authorize('update', $post);
+
+        return view('post.edit', ['post' => $post]);
+    }
+
+    public function update(StorePost $request, $id)
+    {
+        $post = Post::find($id);
+        $this->authorize('update', $post);
+
+        $post->title = $request->input('title');
+        $post->text = $request->input('text');
+        if ($request->input('del_img')) {
+            $post->img_path = null;
+        }
+        if (!empty($request->img_file)) {
+            $post->img_path  = PostImageSave::fileSave($request);
+        }
+        $post->save();
+
+        return redirect(route('post.show', ['id' => $post->id]));
+    }
 }
