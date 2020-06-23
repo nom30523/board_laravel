@@ -38,7 +38,10 @@
             <div style="text-align: right;">
               <span>{{ $comment->user->name }} {{ $comment->created_at }}</span>
               @if (Auth::check() && Auth::id() === $comment->user_id)
-                <a href="#" class="badge badge-danger del_com">削除</a>
+                <a href="#" class="badge badge-danger del_cmt" data-id="{{ $comment->id }}">削除</a>
+                <form action="{{ route('comment.destroy', ['comment' => $comment]) }}" method="post" id="cmt_{{ $comment->id }}">
+                  @csrf
+                </form>
               @endif
             </div>
           </li>
@@ -67,4 +70,5 @@
 @if (Auth::check() && Auth::id() === $post->user_id)
   <script src="/js/delPost.js"></script>
 @endif
+<script src="/js/delCmt.js"></script>
 @endsection
