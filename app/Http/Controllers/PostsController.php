@@ -54,8 +54,8 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
         $this->authorize('update', $post);
-
-        return view('post.edit', ['post' => $post]);
+        $tags = Tag::all();
+        return view('post.edit', ['post' => $post, 'tags' => $tags]);
     }
 
     public function update(StorePost $request, $id)
@@ -72,6 +72,13 @@ class PostsController extends Controller
             $post->img_path  = PostImageSave::fileSave($request);
         }
         $post->save();
+
+        $tagsId = $request->tags;
+        if (!empty($post->tags->all())) {
+            $post->tags()->sync($tagsId);
+        } else {
+            $post->tags()->attach($tagsId);
+        }
 
         return redirect(route('post.show', ['id' => $post->id]));
     }
