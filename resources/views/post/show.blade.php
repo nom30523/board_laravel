@@ -20,9 +20,16 @@
       @if ($post->img_path)
         <img src="{{ $post->img_path }}" alt="投稿画像" class="img-fluid img-thumbnail">
       @endif
-      <div style="text-align: right;">
-        <span>{{ $post->user->name }}</span>
-        <span>{{ $post->created_at }}</span>
+      <div style="display: flex; justify-content: space-between">
+        <div>
+          @foreach ($post->tags as $tag)
+          <span class="badge badge-primary">{{ $tag->name }}</span>
+          @endforeach
+        </div>
+        <div style="text-align: right;">
+          <span>{{ $post->user->name }}</span>
+          <span>{{ $post->created_at }}</span>
+        </div>
       </div>
     </div>
   </div>
