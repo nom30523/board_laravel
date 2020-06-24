@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Post;
+use App\Models\Tag;
 use App\Http\Requests\StorePost;
 use App\Services\PostImageSave;
 
@@ -19,7 +20,8 @@ class PostsController extends Controller
 
     public function create()
     {
-        return view('post.create');
+        $tags = Tag::all();
+        return view('post.create', ['tags' => $tags]);
     }
 
     public function store(StorePost $request)
@@ -33,6 +35,9 @@ class PostsController extends Controller
             $post->img_path  = PostImageSave::fileSave($request);
         }
         $post->save();
+
+        $tagsId = $request->tags;
+        $post->tags()->attach($tagsId);
 
         return redirect('post/index');
     }
