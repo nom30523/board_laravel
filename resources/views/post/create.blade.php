@@ -34,6 +34,15 @@
             <label class="custom-file-label" for="inputGroupFile04">画像を選択</label>
           </div>
         </div>
+        <div class="form-group">
+          <div>タグ</div>
+          @foreach ($tags as $tag)
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="custom-control-input" id="tag_{{ $tag->id }}">
+              <label class="custom-control-label" for="tag_{{ $tag->id }}">{{ $tag->name }}</label>
+            </div>
+          @endforeach
+        </div>
         <input type="submit" class="btn btn-primary" value="投稿する">
       </form>
     </div>
