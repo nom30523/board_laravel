@@ -14,8 +14,9 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('user')->orderBy('created_at', 'desc')->get();
-        return view('post.index', ['posts' => $posts]);
+        $posts = Post::with('user')->orderBy('created_at', 'desc')->paginate(10);
+        $tags = Tag::all();
+        return view('post.index', ['posts' => $posts, 'tags' => $tags, 'input' => '']);
     }
 
     public function create()
