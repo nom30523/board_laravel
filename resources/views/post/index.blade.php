@@ -2,6 +2,22 @@
 
 @section('content')
 <div class="container">
+  <form action="{{ route('post.search') }}" method="get">
+    @csrf
+    <div class="form-group">
+      <span>記事検索</span>
+      <div class="input-wrap row" >
+        <input type="text" name="input" value="{{ $input }}" class="form-control col-9">
+        <select name="tag" class="custom-select col-2">
+          <option value="">タグを選択</option>
+          @foreach ($tags as $tag)
+            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+          @endforeach
+        </select>
+        <input type="submit" value="検索" class="btn btn-primary col-1">
+      </div>
+    </div>
+  </form>
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -22,5 +38,6 @@
       @endforeach
     </tbody>
   </table>
+  {{ $posts->links() }}
 </div>
 @endsection
