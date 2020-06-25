@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Http\Requests\StorePost;
 use App\Services\PostImageSave;
+use App\Services\PostSearch;
 
 class PostsController extends Controller
 {
@@ -17,6 +18,16 @@ class PostsController extends Controller
         $posts = Post::with('user')->orderBy('created_at', 'desc')->paginate(10);
         $tags = Tag::all();
         return view('post.index', ['posts' => $posts, 'tags' => $tags, 'input' => '']);
+    }
+
+    public function search(Request $request)
+    {
+        $input = $request->input('input');
+        $tag = $request->input('tag');
+        $posts = PostSearch::search($input, $tag);
+        $tags = Tag::all();
+
+        return view('post.search', ['posts' => $posts, 'tags' => $tags, 'input' => $input, 'tagId' => $tag]);
     }
 
     public function create()
