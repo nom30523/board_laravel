@@ -18,6 +18,7 @@ Auth::routes();
 Route::group(['prefix' => 'post'], function() {
     Route::get('index', 'PostsController@index')->name('post.index');
     Route::get('show/{id}', 'PostsController@show')->name('post.show');
+    Route::get('search', 'PostsController@search')->name('post.search');
 });
 
 Route::group(['prefix' => 'post', 'middleware' => 'auth'], function() {
